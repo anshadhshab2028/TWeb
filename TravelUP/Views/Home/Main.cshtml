@@ -1,0 +1,61 @@
+﻿<div class="qr-info h-100">
+
+    <div class="category custom-page theme-">
+        <ul id="MainMenu" class="col-md-4 ml-2 mr-2" style="box-shadow: 0 5px 20px 0 rgba(0,0,0,0.15);">
+            <li>
+                <div class="mt-3" style="    background: navy;">
+                    <app-button>
+                        <h3 id="HeaderText" class="text-primary" style="color: #f5eeee !important;font-size: 18px !important;text-align: center;">
+                            TravelUP
+                        </h3>
+
+                    </app-button>
+
+                </div>
+            </li>
+           
+                <li>
+                    <div class="mt-3">
+                       
+                            <app-button>
+                                <button type="button" class="btn btn-block p-3 text-break rounded-pill" style="background: #87cefa; border-color: #87cefa; border-radius: 50px; border-width: 1px;" id="btnAddTravelPartner">
+                                    <span style="color: rgb(0, 0, 0);">Add Travel partner</span><!---->
+                                </button>
+
+                            </app-button>
+                       
+                    </div>
+
+
+                </li>
+            
+
+            <li>
+                <h3 class="text-primary" style="color: #FFFFFF !important;font-size: 18px !important;text-align: center;">
+                   TravelUP
+                </h3>
+            </li>
+        </ul>
+
+
+    </div>
+
+</div>
+<script type="text/javascript">
+    $("#btnAddTravelPartner").click(function (e) {
+
+        $.ajax({
+            url: '@Url.Action("TravelPartner", "TravelPartner")',
+            data: {},
+            cache: false,
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                $("#WrapContent").html(data);
+            },
+            error: function (data) {
+
+            }
+        });
+    });
+</script>

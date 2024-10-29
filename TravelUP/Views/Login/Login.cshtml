@@ -1,0 +1,137 @@
+﻿@model App.DLL.Model.LoginDetails
+
+<link href="~/content/login.css" rel="stylesheet" />
+<style>
+    .row {
+        flex-wrap: nowrap;
+    }
+
+    label, td, select {
+        font-size: 15px !important;
+        font-weight: bold;
+    }
+
+    input[type='text'] {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    a {
+        font-size: 16px !important;
+        font-weight: bold;
+        cursor: pointer;
+    }
+</style>
+
+<div class="container">
+
+    <div id="LoginViewDetails"   data-status="@Model.Status" >
+        <div class="d-flex justify-content-center h-100">
+            <div class="card" style="height:auto !important;margin-top:10% ;background-color:lightskyblue !important;width:35% !i">
+                <div class="card-header" style="border:none">
+                    <h4 style="color:white;position:absolute;margin-top:5%">Sign In</h4><img src="~/Images/Travelup_logo.png" style="margin-left:60%;margin-top:0px;width:45%" />
+                </div>
+                <div class="card-body" style="margin-bottom:0px">
+                    <form>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" style="background: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5))"><i class="fa fa-user"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="username" id="Username" value="@Model.Username">
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" style="background: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5))"><i class="fa fa-key"></i></span>
+                            </div>
+                            <input style="font-size: 16px;font-weight: bold;" type="password" class="form-control" placeholder="password" id="Password" value="@Model.Password" onkeypress="EnterEvent(this);">
+                        </div>
+                       
+                        <div class="form-group">
+                            <input type="button" value="Login" class="btn float-right login_btn" onclick="CheckCredential();" style=" background: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5))">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+<script src="~/lib/slick/slick.js"></script>
+
+<script type="text/javascript">
+
+
+
+
+
+        function CheckCredential() {
+            var mainloader = "<div class=\"MainLoader\"><div id=\"WrapPreloader\" class=\"preloader m-t-62 m-l-2\" style=\"\"><svg class=\"circular\" viewBox=\"25 25 50 50\" style=\"\"><circle class=\"path\" cx=\"50\" cy=\"50\" r=\"20\" fill=\"none\" stroke-width=\"3\" stroke-miterlimit=\"10\"></circle></svg></div></div>";
+            var loginview = $("#MainView").html();
+            var Username = $("#Username").val();
+            var Password = $("#Password").val();
+
+            if (Username == '') {
+                swal("Unsuccesful!", "Please enter username.", "error");
+                $("#MainView").html(loginview);
+            } else if (Password == '') {
+                swal("Unsuccesful!", "Please enter password.", "error")
+                $("#MainView").html(loginview);
+            } else {
+                var inputlogin = { Username: Username, Password: Password };
+                $.ajax({
+                    url: '@Url.Action("ValidateCredential", "Login")',
+                    data: inputlogin,
+                    cache: false,
+                    type: "POST",
+                    contentType: "application/x-www-form-urlencoded",
+                    success: function (data) {
+                        if (data.status == 'success') {
+                            $.ajax({
+                                url: '@Url.Action("Index", "Home")',
+                                data: {},
+                                cache: false,
+                                type: "GET",
+                                dataType: "html",
+                                success: function (data) {
+                                    $("#MainView").html(data);
+                                },
+                                error: function (data) {
+
+                                }
+                            });
+
+                        } else {
+                            if (data.status != null) {
+                                swal("Login", data.msg, data.status);
+                                $("#MainView").html(loginview);
+                            }
+                        }
+                    },
+                    error: function (data) {
+
+                    }
+                });
+            }
+        }
+
+
+        function EnterEvent(e) {
+            var key;
+            if (window.event)
+                key = window.event.keyCode; //IE
+            else
+                key = e.which; //firefox
+
+
+            if (key == 13) {
+
+                CheckCredential();
+            }
+        }
+
+</script>

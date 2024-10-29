@@ -1,0 +1,175 @@
+﻿@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor
+<div id="HomeViewDetails" style="display: list-item;">
+    <div class="header">
+        <nav class="navbar top-navbar navbar-expand-md navbar-light" style="margin-bottom:0px !important;">
+
+
+            <div class="navbar-header">
+            </div>
+            <div class="navbar-collapse">
+                <ul Class="navbar-nav my-lg-0 ml-4">
+                    <li id="LogoutNav" Class="nav-item dropdown" style="background:white;">
+                        <div id="LogoutLink" Class="nav-link dropdown-toggle text-muted row" aria-haspopup="true" aria-expanded="true">
+                            <img src="../images/user.png" alt="user" Class="profile-pic" style="cursor:pointer" />
+
+                        </div>
+                        <div id="LogoutView" class="dropdown-menu dropdown-menu-right animated flipInX" style="padding:0px;margin:0px;overflow:hidden !important;width:48% !important ">
+
+
+                            <div class="dropdown-item" style="background-color:#51c6ea !important;border:none !important;padding:0px;margin:0px;border-radius:25px">
+                                <!-- START list group-->
+                                <div class="list-group list-group-item  bg-info-light" style="background-color:#51c6ea !important;border:none !important;padding:0">
+                                    <div class="list-group-item  bg-info-light" style="background-color:#51c6ea !important;width:100%;padding:0px;margin:0px;border:none">
+
+                                        <div class="form-group" style="text-align:center">
+                                            <img src="~/images/user/no-profile.png" alt="user" Class="profile-pic" style="cursor:pointer;" title="" />
+                                        </div>
+
+                                        <div>
+
+
+                                            <div class="form-group">
+                                                <div class="align-self-start mr-4" style="mix-blend-mode:color-dodge">
+                                                    <p class="m-1" style="font-size:13px"><b>User Name :</b>@HttpContextAccessor.HttpContext.Session.GetString("Username") </p>
+                                                    <p class="m-1" style="font-size:13px"><b>Logon Time:</b>@HttpContextAccessor.HttpContext.Session.GetString("Loggedon") </p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- list item-->
+                                    <div class="list-group-item list-group-item-action" style="vertical-align:bottom;background-color:linen;border:none;padding:0;margin:0">
+                                        <div class="media" style="padding:0px;margin:0px">
+                                            <div class="media-body" style="text-align:right;padding:10px;border:none">
+                                                <button class="btn btn-green mb-2 " type="submit" id="btSignout" style="font-size:60%;background-color:red" title="Signout" onclick="fnSignOut();"><em class="fa fa-power-off fa-2x text-alpha"></em></button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+                    </li>
+                    <div class="ml-3 mt-3 "><h5>Welcome to TravelUP</h5></div>
+                    <li>
+                        <div class="ml-5  mt-3"><span><i class="fa fa-home ml-5 " style="font-size: 30px;" onclick="fnHome();"></i></span></div>
+                    </li>
+                </ul> 
+
+
+            </div>
+        </nav>
+
+
+
+
+    </div>
+</div>
+@*<div Class="page-wrapper mt-5 mr-5" style="background: white;">*@
+<div Class="mt-5 " style="background: white;">
+    <div id="WrapContent" class="ml-2 mr-2" style="text-align:center">
+    </div>
+    <div class="" style="margin-top:10px;">
+
+        <div class="col-md-4 text-center p-0">
+            <span class="d-flex align-items-center justify-content-center fs-12" style="font-size: 10px; ">
+                Powered by
+                <img src="https://mainimageservice.azureedge.net/00-tup-web/images/logo/skin1-logo.png" alt="Brand" class="w-100px ml-1" style="height: 15px">
+            </span>
+        </div>
+    </div>
+</div>
+
+<script src="~/lib/jquery/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="~/lib/bootstrap/js/popper.min.js"></script>
+<script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="~/lib/sweetalert/sweetalert.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        var preloader1 = "<div><i class='fa fa-spinner fa-spin fa-3x fa-fw' style='margin-top:25%;margin-left:-65%;font-size:4em !important;color:lightskyblue'></i><span class='sr - only'>Loading...</span></div>"
+
+        $("#WrapContent").html(preloader1);
+       
+            $.ajax({
+                url: '@Url.Action("Main", "Home")',
+                data: {},
+                cache: false,
+                type: "POST",
+                dataType: "html",
+                success: function (data) {
+
+                    $("#WrapContent").html(data);
+                    $(".fix-sidebar").removeAttr("style");
+                },
+                error: function (data) {
+
+                }
+            });
+        
+
+    });
+
+    function fnHome()
+    {
+
+            $.ajax({
+                url: '@Url.Action("Main", "Home")',
+                data: {},
+                cache: false,
+                type: "POST",
+                dataType: "html",
+                success: function (data) {
+
+                    $("#WrapContent").html(data);
+                    $(".fix-sidebar").removeAttr("style");
+                },
+                error: function (data) {
+
+                }
+            });
+        }
+    
+
+    function fnSignOut(){
+        $.ajax({
+            url: '@Url.Action("Signout", "Home")',
+            data: {},
+            cache: false,
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                $("#MainView").html(data);
+            },
+            error: function (data) {
+
+            }
+        });
+    }
+
+        $("#LogoutNav").click(function (e) {
+            $("#LogoutNav").addClass("show");
+            $("#LogoutLink").prop("aria-expanded", "true");
+            $("#LogoutView").addClass("show");
+            e.stopPropagation();
+        });
+
+    jQuery('html').click(function () {
+        if ($("#LogoutNav").hasClass('show')) {
+            $("#LogoutNav").removeClass("show");
+            $("#LogoutLink").prop("aria-expanded", "false");
+            $("#LogoutView").removeClass("show");
+            $("body").removeClass("show-sidebar");
+            $(".nav-toggler i").addClass("fa fa-bars");
+        }
+    });
+
+
+
+</script>

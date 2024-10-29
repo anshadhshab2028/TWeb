@@ -1,0 +1,364 @@
+﻿<style>
+    label, td, select {
+        font-size: 11px !important;
+        /*font-weight: bold;*/
+    }
+
+    input[type='text'], input[type='date'], input[type='NUMBER'] {
+        font-size: 13px;
+        /*font-weight: bold;*/
+        border: 1px solid;
+        height: 15px
+    }
+
+    input[type='text'], input[type='NUMBER'] {
+        height: 10%;
+        float: right;
+    }
+
+    input[type='date'] {
+        height: 31px;
+        float: right;
+    }
+
+    input[type='button'] {
+        color: white;
+        background-color: navy;
+        height: 24px;
+        font-size: 13px;
+        display: inline-block;
+        line-height: 11px;
+        border-radius: 10px
+    }
+
+    select {
+        border: 1px solid !important;
+        height: 10% !important;
+        width: 100% !important;
+        height: 10% !important;
+        line-height: 200% !important;
+        font-weight: bold;
+    }
+
+
+
+    .select2-dropdown--above {
+        width: 500px !important;
+    }
+</style>
+
+
+<div class="card ml-5" style="width:89%">
+    <div class="card-body">
+        <h5 class="card-title" style="color: #2784fc;">Add Travel Partner Information </h5>
+        <li>
+            <ul>
+                <li>
+                    <div class="row col-md-12 mt-2">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="lbl_display">Partner Type</label>
+                                <select class="form-control" aria-label="Default select example" style="height: 10%;width: auto;" id="ddlPartnerType">
+                                    <option selected disabled value="">----------select---------</option>
+                                    <option value="1">Airline</option>
+                                    <option value="2">Hotel</option>
+                                    <option value="3">Tour Operator</option>
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="lbl_display">Name</label>
+                                <input type="text" class="form-control inp_txt" id="txtName">
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="lbl_display">Address1</label>
+                                <input type="text" class="form-control inp_txt" id="txtadd1">
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </li>
+                <li>
+                    <div class="row col-md-12 mt-2">
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="lbl_display">Address2</label>
+                                <input type="text" class="form-control inp_txt" id="txtadd2">
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="lbl_display">City</label>
+                                <input type="text" class="form-control inp_txt" id="txtcity">
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="lbl_display">Country</label>
+                                <input type="text" class="form-control inp_txt" id="txtcounrtry">
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </li>
+                <li>
+                    <div class="row col-md-12 mt-2">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="lbl_display">Phone</label>
+                                <input type="text" class="form-control inp_txt" id="txtphone">
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="lbl_display">Email</label>
+                                <input type="text" class="form-control inp_txt" id="txtEmail">
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="lbl_display">Website</label>
+                                <input type="text" class="form-control inp_txt" id="txtWebsite">
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </li>
+                <li class="mt-4">
+                    <div class="row g-3 align-items-center pb-3 ml-5 float-right">
+                        <div class="col-md-3">
+                            <input type="button" id="btnSave" value="Save" partnerid="0" class="float-right login_btn">
+                        </div>
+                    </div>
+
+                </li>
+
+            </ul>
+        </li>
+    </div>
+</div>
+
+<div class=" ml-5 mr-5">
+    <div class="row">
+        <div class="panel panel-default table-responsive">
+            <li>
+                <ul>
+                    <li id="dvOrderdetail">
+
+                    </li>
+
+                </ul>
+            </li>
+        </div>
+    </div>
+</div>
+
+<script>
+    var preloader = "<div><i class='fa fa-spinner fa-spin fa-3x fa-fw' style='margin-top:25%;font-size:4em !important;color:lightskyblue'></i><span class='sr - only'>Loading...</span></div>"
+    $(document).ready(function () {
+
+        fnSetPartnerDetails();
+
+        $("#btnSave").click(function () {
+
+            var _name = $("#txtName").val();
+            var _address1 = $("#txtadd1").val();
+            var _address2 = $("#txtadd2").val();
+            var _city = $("#txtcity").val();
+            var _country = $("#txtcounrtry").val();
+            var _phone = $("#txtphone").val();
+            var _email = $("#txtEmail").val();
+            var _website = $("#txtWebsite").val();
+            var _partnerType = $("#ddlPartnerType option:selected").val().trim();
+            var _partnerrId = $(this).attr("partnerid");
+
+
+            if (_name == "") {
+                swal("Alert", "Please enter valid Name", "error");
+            }
+            else if (_address1 == "") {
+                swal("Alert", "Please enter valid Address1", "error");
+            }
+            else if (_address2 == "") {
+                swal("Alert", "Please enter valid Address2", "error");
+            }
+            else if (_city == "") {
+                swal("Alert", "Please enter valid City", "error");
+            }
+            else if (_country == "") {
+                swal("Alert", "Please enter valid Country", "error");
+            }
+            else if (_phone == "") {
+                swal("Alert", "Please enter valid Phone", "error");
+            }
+            else if (_email == "") {
+                swal("Alert", "Please enter valid Email", "error");
+            }
+            else if (_website == "") {
+                swal("Alert", "Please enter valid Website", "error");
+            }
+            else if (_partnerType == "") {
+                swal("Alert", "Please enter valid PartnerType", "error");
+            }
+            else {
+                //$("#WrapContent").html(preloader);
+                var partner = { Name: _name, Address1: _address1, Address2: _address2, City: _city, Country: _country, Phone: _phone, Email: _email, Website: _website, PartnerType: _partnerType, LiNo: _partnerrId }
+                if (_partnerrId != "" && _partnerrId != null) {
+                    $.ajax({
+                        url: '/TravelPartner/UpdatePartnerData',
+                        data: partner,
+                        cache: false,
+                        type: "POST",
+                        contentType: "application/x-www-form-urlencoded",
+                        success: function (data) {
+                            if (data.count != "" && data.count != null && data.count != undefined) {
+                                Clear();
+                                swal("Updated", "Updated Successfully!!", "success");
+                            }
+                            GetTravelPartners();
+                        },
+                        error: function (data) {
+                            swal("Cancelled", "Error Occured,Contact IT!!", "error");
+                        }
+                    });
+
+                }
+                else {
+
+
+                    $.ajax({
+                        url: '/TravelPartner/SavePartnerData',
+                        data: partner,
+                        cache: false,
+                        type: "POST",
+                        contentType: "application/x-www-form-urlencoded",
+                        success: function (data) {
+                            Clear();
+                            GetTravelPartners();
+                        },
+                        error: function (data) {
+                            swal("Cancelled", "Error Occured,Contact IT!!", "error");
+                        }
+                    });
+                }
+
+
+
+            }
+        });
+
+
+        $("#tblPartner tbody").on("click", "tr", function () {
+
+            var _partnerid = $(this).attr("partnerid");
+            $.ajax({
+                url: '/TravelPartner/GetTravelPartnerById',
+                data: { PartnerId: _partnerid },
+                cache: false,
+                type: "POST",
+                contentType: "application/x-www-form-urlencoded",
+                success: function (data) {
+
+
+                    if (data != "" && data != null && data != undefined) {
+
+
+                        $("#txtName").val(data.name);
+                        $("#txtadd1").val(data.address1);
+                        $("#txtadd2").val(data.address1);
+                        $("#txtcity").val(data.city);
+                        $("#txtcounrtry").val(data.country);
+                        $("#txtphone").val(data.phone);
+                        $("#txtEmail").val(data.email);
+                        $("#txtWebsite").val(data.website);
+                        $("#ddlPartnerType").val(data.partnerType);
+                        $("#btnSave").attr("partnerid", data.liNo);
+                    }
+                },
+                error: function (data) {
+                    swal("Cancelled", "Error Occured,Contact IT!!", "error");
+                }
+            });
+
+        });
+    });
+
+    function fnSetPartnerDetails() {
+        var orderTable = '<table id="tblPartner" class="table table-fixedmt-4" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;width:100%"> <thead>';
+        orderTable = orderTable + '<thead><tr style="font-size:11px;background-color:#5c4ac7"><th style="text-align:center;font-weight:bold;color: white;width: 10px;">Line#</th><td style="text-align:center;font-weight:bold;color: white;">Partner Type</th><th style="text-align:center;font-weight:bold;color: white;">Name</th><th style="text-align:center;font-weight:bold;color: white;">Add1</th><th style="text-align:center;font-weight:bold;color: white;">Add2</th><th style="text-align:center;font-weight:bold;color: white;">City</th><th style="text-align:center;font-weight:bold;color: white;">Country</th><th style="text-align:center;font-weight:bold;color: white;">Phone</th><th style="text-align:center;font-weight:bold;color: white;">Email</th><th style="text-align:center;font-weight:bold;color: white;">Website</th></tr ></thead>'
+        orderTable = orderTable + '<tbody>';
+
+        orderTable = orderTable + '</tbody></table>';
+        $('#dvOrderdetail').html(orderTable);
+        GetTravelPartners();
+    }
+
+    function GetTravelPartners() {
+        $.ajax({
+            url: '/TravelPartner/GetTravelPartners',
+            data: {},
+            cache: false,
+            type: "GET",
+            contentType: "application/x-www-form-urlencoded",
+            success: function (data) {
+
+                $("#tblPartner tbody").empty();
+
+                if (data != "" && data != null && data != undefined) {
+                    for (var i = 0; i < data.length; i++) {
+                        var rowData = data[i];
+                        var newRow = $('<tr partnerid=' + rowData.liNo + ' style="cursor:pointer"></tr>');
+                        newRow.append('<td> ' + rowData.liNo + '</td>');
+                        newRow.append("<td>" + rowData.partner + "</td>");
+                        newRow.append("<td>" + rowData.name + "</td>");
+                        newRow.append("<td>" + rowData.address1 + "</td>");
+                        newRow.append("<td>" + rowData.address2 + "</td>");
+                        newRow.append("<td>" + rowData.city + "</td>");
+                        newRow.append("<td>" + rowData.country + "</td>");
+                        newRow.append("<td>" + rowData.phone + "</td>");
+                        newRow.append("<td>" + rowData.email + "</td>");
+                        newRow.append('<td style="text-align: center;">' + rowData.website + '</td>');
+
+                        // Append the new row to the table body
+                        $("#tblPartner tbody ").append(newRow);
+                    }
+                }
+            },
+            error: function (data) {
+                swal("Cancelled", "Error Occured,Contact IT!!", "error");
+            }
+        });
+    }
+
+
+    function Clear() {
+        $("#txtName").val("");
+        $("#txtadd1").val("");
+        $("#txtadd2").val("");
+        $("#txtcity").val("");
+        $("#txtcounrtry").val("");
+        $("#txtphone").val("");
+        $("#txtEmail").val("");
+        $("#txtWebsite").val("");
+        $("#ddlPartnerType").val("");
+        $("#btnSave").attr("partnerid", "");
+    }
+</script>

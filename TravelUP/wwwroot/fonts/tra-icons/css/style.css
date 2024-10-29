@@ -1,0 +1,216 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/icomoon.eot?vvkubx');
+  src:  url('../fonts/icomoon.eot?vvkubx#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?vvkubx') format('truetype'),
+    url('../fonts/icomoon.woff?vvkubx') format('woff'),
+    url('../fonts/icomoon.svg?vvkubx#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-xlsdet:before {
+  content: "\e93c";
+}
+.icon-stock:before {
+  content: "\e93b";
+}
+.icon-square-plus:before {
+  content: "\e93a";
+}
+.icon-createorder:before {
+  content: "\e939";
+}
+.icon-returnlist:before {
+  content: "\e938";
+}
+.icon-arrow1:before {
+  content: "\e937";
+  color: #3b6a75;
+}
+.icon-return:before {
+  content: "\e936";
+}
+.icon-xlsx:before {
+  content: "\e934";
+}
+.icon-pdf:before {
+  content: "\e935";
+}
+.icon-FirstFlight:before {
+  content: "\e92f";
+}
+.icon-nooforders:before {
+  content: "\e930";
+}
+.icon-iMile:before {
+  content: "\e931";
+}
+.icon-Fedex:before {
+  content: "\e932";
+}
+.icon-Empost:before {
+  content: "\e933";
+}
+.icon-VWeight:before {
+  content: "\e92e";
+}
+.icon-dollar:before {
+  content: "\e92d";
+}
+.icon-delivered:before {
+  content: "\e92c";
+}
+.icon-height:before {
+  content: "\e929";
+}
+.icon-width:before {
+  content: "\e92a";
+}
+.icon-length:before {
+  content: "\e92b";
+}
+.icon-weight:before {
+  content: "\e928";
+}
+.icon-packed:before {
+  content: "\e924";
+}
+.icon-received:before {
+  content: "\e925";
+}
+.icon-informed:before {
+  content: "\e926";
+}
+.icon-intransit:before {
+  content: "\e927";
+}
+.icon-Transguardnew:before {
+  content: "\e922";
+}
+.icon-elite:before {
+  content: "\e923";
+}
+.icon-natrl:before {
+  content: "\e921";
+}
+.icon-ecommerce:before {
+  content: "\e920";
+}
+.icon-assign:before {
+  content: "\e91f";
+}
+.icon-inventory:before {
+  content: "\e91e";
+}
+.icon-inbound:before {
+  content: "\e91d";
+}
+.icon-rates:before {
+  content: "\e91c";
+}
+.icon-profile:before {
+  content: "\e91b";
+}
+.icon-DC:before {
+  content: "\e91a";
+}
+.icon-DC1:before {
+  content: "\e919";
+}
+.icon-shopping-cart:before {
+  content: "\e918";
+}
+.icon-shipped:before {
+  content: "\e916";
+}
+.icon-warehouse:before {
+  content: "\e917";
+}
+.icon-kayfi:before {
+  content: "\e915";
+}
+.icon-populateasn:before {
+  content: "\e914";
+}
+.icon-pending:before {
+  content: "\e913";
+}
+.icon-refresh-button:before {
+  content: "\e912";
+}
+.icon-qty:before {
+  content: "\e902";
+}
+.icon-pallet:before {
+  content: "\e903";
+}
+.icon-location_1:before {
+  content: "\e901";
+}
+.icon-chgsts:before {
+  content: "\e900";
+}
+.icon-dbrd:before {
+  content: "\e904";
+}
+.icon-dfrm:before {
+  content: "\e905";
+}
+.icon-dlt:before {
+  content: "\e906";
+}
+.icon-doctxt:before {
+  content: "\e907";
+}
+.icon-expl:before {
+  content: "\e908";
+}
+.icon-hme:before {
+  content: "\e909";
+  color: #5ea3d7;
+}
+.icon-keycrd:before {
+  content: "\e90a";
+  color: #157efb;
+}
+.icon-rpts:before {
+  content: "\e90b";
+}
+.icon-stng:before {
+  content: "\e90c";
+}
+.icon-sv:before {
+  content: "\e90d";
+}
+.icon-uinfo:before {
+  content: "\e90e";
+  color: #5e889e;
+}
+.icon-updcln:before {
+  content: "\e90f";
+}
+.icon-updlne:before {
+  content: "\e910";
+  color: #515151;
+}
+.icon-upld:before {
+  content: "\e911";
+  color: #157efb;
+}

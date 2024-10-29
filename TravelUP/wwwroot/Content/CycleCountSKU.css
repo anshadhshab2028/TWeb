@@ -1,0 +1,71 @@
+﻿body {
+}
+* {
+    margin: 0;
+    padding: 0
+}
+
+/* menu base styles */
+menu[role=radiogroup] {
+    display: inline-block;
+    background: #ddd;
+    line-height: 10px; /* Set height */
+    position: relative; /* Make this the parent of absolutely positioned elements */
+}
+
+    /* hide radio buttons */
+    menu[role=radiogroup] input[type=radio] {
+        display: none;
+    }
+
+        /* Label base styles */
+        menu[role=radiogroup] input[type=radio] + label {
+            display: inline-block;
+            width: 140px;
+            text-align: center;
+            position: relative; /* draw above selection indicator */
+            z-index: 1; /* draw above selection indicator */
+            transition: none; /* No delay by default */
+        }
+        /* Label selected styles */
+        menu[role=radiogroup] input[type=radio]:checked + label {
+            transition: 0 400ms; /* Add a delay before applying these styles */
+            color: white;
+        }
+
+    /* Selection indicator (blue box) default styles */
+    menu[role=radiogroup] .selection-indicator {
+        background: dodgerblue;
+        position: absolute;
+        width: 140px;
+        height: 20px;
+        top: 0;
+        transition: 400ms; /* animate changes, in this case: position */
+    }
+
+
+    /* Manually set selection indicator position based on state
+    -------------------------------------------------------------- */
+    /* First item selected */
+    menu[role=radiogroup] input[type=radio]:checked + label + input[type=radio] + label + .selection-indicator {
+        left: 0;
+    }
+
+    /* Second item selected */
+    menu[role=radiogroup] input[type=radio] + label + input[type=radio]:checked + label + .selection-indicator {
+        left: 144px;
+    }
+
+input[type='text'] {
+    height: 10%;
+    float: right;
+}
+
+input[type='button'] {
+    color: white;
+    background-color: navy;
+    height: 25px;
+    font-size: 13px;
+    display: inline-block;
+    line-height: 11px;
+}

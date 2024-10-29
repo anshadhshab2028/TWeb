@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Bootstrap Admin App">
+    <meta name="keywords" content="app, responsive, jquery, bootstrap, dashboard, admin">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>Travel UP</title>
+
+    @*CSS Starts*@
+    <link href="~/lib/bootstrap/carousel/bootstrap_slider.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="~/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/content/lib/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/content/style.css" rel="stylesheet" />
+    <link href="~/content/lib/sweetalert/sweetalert.css" rel="stylesheet" />
+    @*CSS Ends*@
+
+    @*js Starts*@
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="~/lib/bootstrap/js/popper.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/lib/sweetalert/sweetalert.min.js"></script>
+    @*CSS Ends*@
+</head>
+<body class="fix-header fix-sidebar">
+
+
+
+    @RenderBody()
+
+
+    @RenderSection("scripts", false)
+
+
+</body>
+</html>
+
